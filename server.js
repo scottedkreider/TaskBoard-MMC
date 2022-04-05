@@ -6,6 +6,7 @@ const ejs = require('ejs');
 var app = express();
 
 // Render static files
+console.log(__dirname + '/public');
 app.use(express.static(__dirname + '/public'));
 
 // Set the view engine to ejs
