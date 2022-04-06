@@ -2,9 +2,21 @@
 var express = require('express');
 const ejs = require('ejs');
 const path = require('path');
+var MongoClient = require('mongodb').MongoClient;
 
 // Initialise Express
 var app = express();
+
+// Initialize DB
+MongoClient.connect("mongodb+srv://scottedkreider:m7SedKrcsehgtj&m@cluster0.xfkqs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    .then(client => {
+        console.log(`Connected to the DB`);
+        const db = client.db("semester-info");
+        const semesterInfo = db.collection(`semesters`);
+    })
+    .catch(error => console.error(error));
+
+
 
 // Render static files
 console.log(__dirname + '/public');
@@ -22,4 +34,9 @@ app.listen(port_number,() => {
 // Root route
 app.get('/', (req, res) => {
     res.render('pages/index');
+});
+
+// Root route
+app.post('/semester', (req, res) => {
+    console.log(req.body);
 });
