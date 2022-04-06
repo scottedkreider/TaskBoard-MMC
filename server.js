@@ -8,14 +8,14 @@ const bodyParser = require("body-parser");
 // Initialise Express
 var app = express();
 
-// Initialize DB
-MongoClient.connect("mongodb+srv://scottedkreider:m7SedKrcsehgtj&m@cluster0.xfkqs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-    .then(client => {
-        console.log(`Connected to the DB`);
-        const db = client.db("semester-info");
-        const semesterInfo = db.collection(`semesters`);
-    })
-    .catch(error => console.error(error));
+// // Initialize DB
+// MongoClient.connect("mongodb+srv://scottedkreider:m7SedKrcsehgtj&m@cluster0.xfkqs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+//     .then(client => {
+//         console.log(`Connected to the DB`);
+//         const db = client.db("semester-info");
+//         const semesterInfo = db.collection(`semesters`);
+//     })
+//     .catch(error => console.error(error));
 
 
 
