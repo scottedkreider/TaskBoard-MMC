@@ -78,6 +78,11 @@ tr.black th {
     width: 100vw;
 }
 
+.fixTableWidth {
+    overflow-y: auto;
+    width: 100vw;
+}
+
 .fixTableHead thead th {
     position: sticky;
     top: 0;
@@ -89,7 +94,7 @@ table {
 }
 
 .navbar-custom {
-    height: 100px;
+    height: 150px;
 }
 
 
