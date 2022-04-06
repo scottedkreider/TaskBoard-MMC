@@ -4,7 +4,6 @@ const ejs = require('ejs');
 const path = require('path');
 var MongoClient = require('mongodb').MongoClient;
 const bodyParser = require("body-parser");
-const router = express.Router();
 
 // Initialise Express
 var app = express();
@@ -21,24 +20,22 @@ MongoClient.connect("mongodb+srv://scottedkreider:m7SedKrcsehgtj&m@cluster0.xfkq
 
 
 // Render static files
-console.log(__dirname + '/public');
 app.use("/public",express.static(path.join(__dirname,'/public')));
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 
-var port_number = process.env.PORT || 3000;
+var port_number = process.env.PORT || 5000;
 // Port website will run on
 app.listen(port_number,() => {
     console.log(`Listening on port ${port_number}`);
 });
 
 // Root route
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
-// // Root route
-// router.post('/semester', (req, res) => {
-//     console.log(req.body);
-// });
+app.post('/', (req, res) => {
+    res.send(req.body);
+});

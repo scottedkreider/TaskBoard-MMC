@@ -36,20 +36,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if(localStorage.getItem("mmc-3")){
         refresh();
     } else {
-        cde.innerHTML += `<form action = /semester>
-            <div class = "form-group">
-                <label for = "semesterStartDate">Enter the Semester Start Date</label>
-                <input type = "date" value = "2022-02-23" name = "semesterStartDate" id = "semesterStartDate" onchange="laterStartDateHandler();">
-            </div>
-            <div class = "form-group">
-                <label for = "semesterStartDate">Enter the Semester End Date</label>
-                <input type = "date" value = "2022-03-12" name = "semesterEndDate" id = "semesterEndDate">
-            </div>
-            <button id = "semesterDatesSubmit" type = "button">Submit</button>
+        cde.innerHTML += `<form action = "/" method="POST">
+                <div class = "form-group">
+                    <label for = "semesterStartDate">Enter the Semester Start Date</label>
+                    <input type = "date" value = "2022-01-17" name = "semesterStartDate" id = "semesterStartDate">
+                </div>
+                <div class = "form-group">
+                    <label for = "semesterStartDate">Enter the Semester End Date</label>
+                    <input type = "date" value = "2022-05-06" name = "semesterEndDate" id = "semesterEndDate">
+                </div>
+                <button id = "semesterDatesSubmit" type = "submit">Submit</button>
         </form>
         `;
         const semesterDatesListener = document.getElementById("semesterDatesSubmit");
-        const refreshListener = document.getElementById("semesterDatesSubmit");
+
+        semesterDatesListener.addEventListener("mouseover", (event) => {
+            laterStartDateHandler();
+            earlierStartDateHandler();
+        });
 
         semesterDatesListener.addEventListener("click", (event) => {
             event.preventDefault();
@@ -59,17 +63,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 location.reload();
             }
         });
-
-        refreshListener.addEventListener("click", refresh);
-        preventImproperDatesListener();
     }
 });
 
-function laterStartDateHandler(){
+laterStartDateHandler = function(){
     const startDate = document.getElementById("semesterStartDate");
     const endDate = document.getElementById("semesterEndDate");
     if(startDate.value > endDate.value){
         endDate.value = `${startDate.value}`;
+    }
+}
+
+earlierStartDateHandler = function(){
+    const startDate = document.getElementById("semesterStartDate");
+    const endDate = document.getElementById("semesterEndDate");
+    if(endDate.value < startDate.value){
+        startDate.value = `${endDate.value}`;
     }
 }
 
@@ -170,19 +179,6 @@ resetListener = function(){
         location.reload();
     })
 }
-
-preventImproperDatesListener = function(){
-    const startDateForm = document.getElementById("semesterStartDate");
-    const endDateForm = document.getElementById("semesterEndDate");
-    const semesterDatesListener = document.getElementById("semesterDatesSubmit");
-
-    semesterDatesListener.addEventListener('mouseover',(event) => {
-        if(startDateForm.value > endDateForm.value){
-            semesterDatesListener.disabled = !semesterDatesListener.disabled;
-        }
-    })
-}
-
 
 
 dayIsInThePast = function (date) {
