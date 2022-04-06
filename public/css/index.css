@@ -4,6 +4,10 @@
     background-color: #555;
 }
 
+.p-instructions {
+    padding: 15px;
+}
+
 .visible {
     visibility: visible;
 }
@@ -18,12 +22,12 @@
 }
 
 .big-checkbox {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
 }
 
 .bg-grey {
-    background-color: #d3d3d3;
+    background-color: #c9f5d9;
 }
 
 .bg-navyblue {
@@ -34,27 +38,32 @@
     background-color: #FCC201;
 }
 
+.bg-lightpeach {
+    background-color: #ffd686;
+}
+
 .font-lightblue {
     color: #ADD8E6;
 }
 
 .font-purple {
-    color: #552586;
+    color: #041e42;
 }
 
-.p {
-    font-size: 30px;
-    font-size: 1vw;
-}
-
-.h4 {
-    font-size: 30px;
-    font-size: 1vw;
-}
 
 table {
     position: relative;
     border-collapse: collapse;
+}
+
+tr.peach th {
+    background: #ed8f69;
+    color: white;
+}
+
+tr.lightpeach th {
+    background: #ffd686;
+    color: black;
 }
 
 tr.black th {
@@ -67,21 +76,37 @@ tr.black th {
     overflow-y: auto;
     height: 100vh;
     width: 100vw;
-  }
-  .fixTableHead thead th {
+}
+
+.fixTableHead thead th {
     position: sticky;
     top: 0;
-  }
-  table {
-    border-collapse: collapse;        
+}
+
+table {
+    border-collapse: collapse;
     width: 100%;
+}
+
+.navbar-custom {
+    height: 100px;
+}
+
+
+.button {
+    background-color: #ed8f69;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
   }
 
-  th,
-  td {
-    padding: 8px 15px;
-    border: 2px solid #529432;
-  }
-  th {
-    background: #ABDD93;
-  }
+.button1 {border-radius: 2px;}
+.button2 {border-radius: 4px;}
+.button3 {border-radius: 8px;}
+.button4 {border-radius: 12px;}
+.button5 {border-radius: 50%;}

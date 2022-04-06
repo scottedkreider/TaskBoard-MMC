@@ -36,17 +36,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (localStorage.getItem("mmc-3")) {
         refresh();
     } else {
-        cde.innerHTML += `<form action = "/semester" method="POST">
-                <div class = "form-group">
-                    <label for = "semesterStartDate">Enter the Semester Start Date</label>
-                    <input type = "date" value = "2022-03-06" name = "semesterStartDate" id = "semesterStartDate">
-                </div>
-                <div class = "form-group">
-                    <label for = "semesterStartDate">Enter the Semester End Date</label>
-                    <input type = "date" value = "2022-04-30" name = "semesterEndDate" id = "semesterEndDate">
-                </div>
-                <button id = "semesterDatesSubmit" type = "submit">Submit</button>
-        </form>
+        cde.innerHTML += `
+        <div class = "bg-lightpeach text-center">
+            <div>
+                <h1>Create a new multi-month calendar!</h1>
+            </div>        
+            <hr/>
+            <div class = "text-left">
+                <p class = "p-instructions font-weight-bold">Pick a start date and an end date. This will be your roadmap for the duration of the period.</p>
+                <ol "text-center">
+                    <li>Check off days as you complete them</li>
+                    <li>Countdown to your goal!</li>
+                </ol>
+            </div>
+            <hr/>
+            <form action = "/semester" method="POST" class = "text-center bg-lightpeach">
+                    <div class = "form-group font-weight-bold">
+                        <label for = "semesterStartDate">Enter the Period Start Date</label>
+                        <input type = "date" value = "2022-03-14" name = "semesterStartDate" id = "semesterStartDate">
+                    </div>
+                    <div class = "form-group font-weight-bold">
+                        <label for = "semesterStartDate">Enter the Period End Date</label>
+                        <input type = "date" value = "2022-05-06" name = "semesterEndDate" id = "semesterEndDate">
+                    </div>
+                    <button id = "semesterDatesSubmit" type = "submit" class = "button button3 font-weight-bold">Submit</button>
+            </form>
+
+
+        </div>
         `;
         const semesterDatesListener = document.getElementById("semesterDatesSubmit");
 
@@ -139,10 +156,24 @@ refresh = function () {
     let originalNumberOfDays = JSON.parse(localStorage.getItem("originalNumberOfDays"));
     cde.innerHTML = '';
 
-    dc.innerHTML = `<nav class = "navbar fixed-top bg-light">
-        <div>${originalNumberOfDays - myMMCInfo.numDaysToGo} days down out of ${originalNumberOfDays}! ${myMMCInfo.numDaysToGo} days to go!</div>
-        <div><button id = "clearSemesterButton">Clear Semester</button></div>
-        <div><button id = "checkAllAvailableDaysButton">Check all available days!</button></div>
+    dc.innerHTML = `<nav class = "navbar navbar-custom fixed-top bg-lightpeach border-bottom border-dark">
+        <div class = "text-left">
+            <p class = "font-weight-bold">
+                <span style = "color:white">${originalNumberOfDays - myMMCInfo.numDaysToGo}</span> days down out of ${originalNumberOfDays}!
+                <br><span style = "color:white">${myMMCInfo.numDaysToGo}</span> days to go!
+                <br><span style = "color:white">${parseFloat(100 * (originalNumberOfDays - myMMCInfo.numDaysToGo) / originalNumberOfDays).toFixed(0)+"%"}</span> complete!
+            </p>
+        </div>
+        <div>
+            <button id = "clearSemesterButton" class = "button button3 font-weight-bold">
+                Clear Semester
+            </button>
+        </div>
+        <div>
+            <button id = "checkAllAvailableDaysButton" class = "button button3 font-weight-bold">
+                Check all available days!
+            </button>
+        </div>
     </nav>
     `;
 
@@ -151,7 +182,7 @@ refresh = function () {
         <div class = "table-responsive fixTableHead">
             <table class = "table table-bordered">
                     <thead>
-                        <tr class = "black" height = "125px">
+                        <tr class = "peach" height = "150px">
                             <th style="width: 9%">WEEK</th>
                             <th style="width: 13%">Sunday</th>
                             <th style="width: 13%">Monday</th>
@@ -182,6 +213,7 @@ resetListener = function () {
         event.preventDefault();
         if (confirm("Are you sure you want to delete this semester?")) {
             localStorage.removeItem("mmc-3");
+            localStorage.removeItem("originalNumberOfDays");
         }
         document.location.reload();
     })
@@ -258,19 +290,19 @@ generateNumbers = function (infoArray) {
     })
 
     do {
-        dayText += `<tr height = "150px" class = "font-weight-bold black"><th scope = "row">${week}</th>`
+        dayText += `<tr height = "150px" class = "font-weight-bold lightpeach border-right border-dark"><th scope = "row"><p class = "font-purple">${week}</p></th>`
         for (let i = 0; i < 7; i++) {
             if (day < infoArray.length - 1) {
                 if (infoArray[day].isChecked === true) {
-                    dayText += `<td class = "align-middle text-center bg-grey"><h4 class = "font-purple">${infoArray[day].monthText} ${infoArray[day].day}
-                        </h4><p class = "font-purple">Completed!</p>`;
+                    dayText += `<td class = "align-middle text-center bg-grey"><del><p class = "font-purple">${infoArray[day].monthText} ${infoArray[day].day}
+                        </p></del><p class = "font-purple">Completed!</p>`;
                 } else {
-                    dayText += `<td class = "align-middle text-center border"><h4>${infoArray[day].monthText}  ${infoArray[day].day}
-                        </h4><div><input type = 'checkbox' id = 'test${String(day).padStart(5, '0')}' class = 'big-checkbox'>`;
+                    dayText += `<td class = "align-middle text-center border"><p>${infoArray[day].monthText}  ${infoArray[day].day}
+                        </p><div><input type = 'checkbox' id = 'test${String(day).padStart(5, '0')}' class = 'big-checkbox'>`;
                 }
             } else if (day < infoArray.length) {
-                dayText += `<td class = "align-middle text-center bg-winninggold"><h4>${infoArray[day].monthText}  ${infoArray[day].day}
-                    </h4><div><input type = 'checkbox' id = 'test${String(day).padStart(5, '0')}' class = 'big-checkbox'>`;
+                dayText += `<td class = "align-middle text-center bg-winninggold"><p>${infoArray[day].monthText}  ${infoArray[day].day}
+                    </p><div><input type = 'checkbox' id = 'test${String(day).padStart(5, '0')}' class = 'big-checkbox'>`;
             } else {
                 dayText += `</td>`;
             }
