@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if(localStorage.getItem("mmc-3")){
         refresh();
     } else {
-        cde.innerHTML += `<form>
+        cde.innerHTML += `<form action = /semester>
             <div class = "form-group">
                 <label for = "semesterStartDate">Enter the Semester Start Date</label>
                 <input type = "date" value = "2022-02-23" name = "semesterStartDate" id = "semesterStartDate" onchange="laterStartDateHandler();">

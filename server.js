@@ -3,6 +3,8 @@ var express = require('express');
 const ejs = require('ejs');
 const path = require('path');
 var MongoClient = require('mongodb').MongoClient;
+const bodyParser = require("body-parser");
+const router = express.Router();
 
 // Initialise Express
 var app = express();
@@ -32,11 +34,11 @@ app.listen(port_number,() => {
 });
 
 // Root route
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.render('pages/index');
 });
 
-// Root route
-app.post('/semester', (req, res) => {
-    console.log(req.body);
-});
+// // Root route
+// router.post('/semester', (req, res) => {
+//     console.log(req.body);
+// });
