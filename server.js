@@ -25,7 +25,7 @@ app.use("/public",express.static(path.join(__dirname,'/public')));
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 
-var port_number = process.env.PORT || 5000;
+var port_number = process.env.PORT || 3000;
 // Port website will run on
 app.listen(port_number,() => {
     console.log(`Listening on port ${port_number}`);
@@ -36,6 +36,6 @@ app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
-app.post('/', (req, res) => {
-    res.send(req.body);
+app.post('/semester', (req, res) => {
+    console.log(req.body);
 });

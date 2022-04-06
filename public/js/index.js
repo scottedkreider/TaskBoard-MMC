@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if(localStorage.getItem("mmc-3")){
         refresh();
     } else {
-        cde.innerHTML += `<form action = "/" method="POST">
+        cde.innerHTML += `<form action = "/semester" method="POST">
                 <div class = "form-group">
                     <label for = "semesterStartDate">Enter the Semester Start Date</label>
                     <input type = "date" value = "2022-01-17" name = "semesterStartDate" id = "semesterStartDate">
@@ -88,6 +88,7 @@ earlierStartDateHandler = function(){
 
 let semesterStartDate;
 let semesterEndDate;
+let totalNumberOfDays;
 getDates = function (listener) {
     const startDateForm = document.getElementById("semesterStartDate");
     const endDateForm = document.getElementById("semesterEndDate");
@@ -139,6 +140,7 @@ refresh = function () {
     // `;
 
     dc.innerHTML = `
+    <div>${myMMCInfo.length}</div>
     <div><button id = "clearSemesterButton">Clear Semester</button></div>
     `;
 
@@ -195,7 +197,7 @@ checkBoxListener = function (info) {
                 info[id].isChecked = true;
                 localStorage.setItem("mmc-3",JSON.stringify(info));
                 checkbox.parentElement.parentElement.classList += "bg-success";
-                checkbox.parentElement.innerHTML = "";
+                checkbox.parentElement.innerHTML = "<p>Completed!</p>";
             } else{
                 checkbox.checked = !checkbox.checked;
             }
@@ -228,7 +230,8 @@ generateNumbers = function (infoArray) {
         for (let i = 0; i < 7; i++) {
                 if(day < infoArray.length){
                     if(infoArray[day].isChecked === true){
-                        dayText += `<td class = "bg-success">${infoArray[day].monthText} ${infoArray[day].day}`;
+                        dayText += `<td class = "bg-success">${infoArray[day].monthText} ${infoArray[day].day}
+                        <p>Completed!</p>`;
                     } else{
                         dayText += `<td>${infoArray[day].monthText}  ${infoArray[day].day}
                             <div><input type = 'checkbox' id = 'test${String(day).padStart(5,'0')}' class = 'big-checkbox'>`;
