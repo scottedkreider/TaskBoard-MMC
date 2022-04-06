@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 var app = express();
 
 // // Initialize DB
-// MongoClient.connect("mongodb+srv://scottedkreider:m7SedKrcsehgtj&m@cluster0.xfkqs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+//  <copy instantiation here>
 //     .then(client => {
 //         console.log(`Connected to the DB`);
 //         const db = client.db("semester-info");
