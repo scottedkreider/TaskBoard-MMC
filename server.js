@@ -21,5 +21,5 @@ app.listen(port_number,() => {
 
 // Root route
 app.get('/', (req, res) => {
-    res.render('pages/index');
+    res.render('pages/register');
 });
