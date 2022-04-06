@@ -39,11 +39,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         cde.innerHTML += `<form action = "/semester" method="POST">
                 <div class = "form-group">
                     <label for = "semesterStartDate">Enter the Semester Start Date</label>
-                    <input type = "date" value = "2022-01-17" name = "semesterStartDate" id = "semesterStartDate">
+                    <input type = "date" value = "2022-04-01" name = "semesterStartDate" id = "semesterStartDate">
                 </div>
                 <div class = "form-group">
                     <label for = "semesterStartDate">Enter the Semester End Date</label>
-                    <input type = "date" value = "2022-05-06" name = "semesterEndDate" id = "semesterEndDate">
+                    <input type = "date" value = "2022-04-30" name = "semesterEndDate" id = "semesterEndDate">
                 </div>
                 <button id = "semesterDatesSubmit" type = "submit">Submit</button>
         </form>
@@ -97,10 +97,11 @@ getDates = function (listener) {
     listener.disabled = true;
     startDateForm.disabled = true;
     endDateForm.disabled = true;
-
+    
     // dateArray(semesterStartDate, semesterEndDate)
     let objectToStore = generateDayDescriptors(semesterStartDate, semesterEndDate);
-    localStorage.setItem("mmc-3",JSON.stringify(objectToStore));
+    localStorage.setItem("mmc-3",JSON.stringify({numDaysToGo: objectToStore.length,
+                                                    dateData: objectToStore}));
     refresh();
 }
 
@@ -124,6 +125,7 @@ function generateDayDescriptors(startDate, endDate) {
             monthText: MONTHS[element.getUTCMonth()],
         }
     })
+    localStorage.setItem("originalNumberOfDays",dayDescriptors.length);
     return dayDescriptors;
 }
 
@@ -132,6 +134,7 @@ function generateDayDescriptors(startDate, endDate) {
 
 refresh = function () {
     let myMMCInfo = JSON.parse(localStorage.getItem("mmc-3"));
+    let originalNumberOfDays = JSON.parse(localStorage.getItem("originalNumberOfDays"));
     cde.innerHTML = '';
 
     // dc.innerHTML = `
@@ -139,35 +142,38 @@ refresh = function () {
     //     <div><button id = "clearSemesterButton">Clear Semester</button></div>
     // `;
 
-    dc.innerHTML = `
-    <div>${myMMCInfo.length}</div>
-    <div><button id = "clearSemesterButton">Clear Semester</button></div>
+    dc.innerHTML = `<nav class = "navbar fixed-top bg-light">
+        <div>${originalNumberOfDays - myMMCInfo.numDaysToGo} days down out of ${originalNumberOfDays}! ${myMMCInfo.numDaysToGo} days to go!</div>
+        <div><button id = "clearSemesterButton">Clear Semester</button></div>
+        <div><button id = "checkAllAvailableDaysButton">Check all available days!</button></div>
+    </nav>
     `;
 
     mmc.innerHTML = `
-    <div class = "container-fluid">
-        <table class = "table table-bordered">
-            <thead style = "position: sticky; top: 0;">
-                <tr class = "header" height = "75px">
-                    <th style="width: 9%" scope = "col" class = "header">WEEK</th>
-                    <th style="width: 13%" scope = "col" class = "header">Sunday</th>
-                    <th style="width: 13%" scope = "col" class = "header">Monday</th>
-                    <th style="width: 13%" scope = "col" class = "header">Tuesday</th>
-                    <th style="width: 13%" scope = "col" class = "header">Wednesday</th>
-                    <th style="width: 13%" scope = "col" class = "header">Thursday</th>
-                    <th style="width: 13%" scope = "col" class = "header">Friday</th>
-                    <th style="width: 13%" scope = "col" class = "header">Saturday</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${generateNumbers(myMMCInfo)}
-            </tbody>    
-        </table>
-    </div>
+        <div class = "table-responsive">
+            <table class = "table table-bordered">
+                <thead style = "position: sticky; top: 0;">
+                    <tr class = "header" height = "75px">
+                        <th style="width: 9%" scope = "col" class = "header">WEEK</th>
+                        <th style="width: 13%" scope = "col" class = "header">Sunday</th>
+                        <th style="width: 13%" scope = "col" class = "header">Monday</th>
+                        <th style="width: 13%" scope = "col" class = "header">Tuesday</th>
+                        <th style="width: 13%" scope = "col" class = "header">Wednesday</th>
+                        <th style="width: 13%" scope = "col" class = "header">Thursday</th>
+                        <th style="width: 13%" scope = "col" class = "header">Friday</th>
+                        <th style="width: 13%" scope = "col" class = "header">Saturday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${generateNumbers(myMMCInfo.dateData)}
+                </tbody>    
+            </table>
+        </div>
 `;
 
     checkBoxListener(myMMCInfo);
     resetListener();
+    checkAllAvailableDaysListener(myMMCInfo);
 }
 
 resetListener = function(){
@@ -193,17 +199,44 @@ checkBoxListener = function (info) {
     checkboxListener.forEach(checkbox => {
         checkbox.addEventListener("click", () => {
             let id = parseInt(checkbox.id.substring(4,checkbox.id.length));
-            if (dayIsInThePast(info[id].date) && !checkbox.isChecked) {
-                info[id].isChecked = true;
-                localStorage.setItem("mmc-3",JSON.stringify(info));
-                checkbox.parentElement.parentElement.classList += "bg-success";
+            if (dayIsInThePast(info.dateData[id].date) && !checkbox.isChecked) {
+                info.dateData[id].isChecked = true;
+                checkbox.parentElement.parentElement.classList += "align-middle text-center bg-lightblue";
                 checkbox.parentElement.innerHTML = "<p>Completed!</p>";
+                info.numDaysToGo--;
+                localStorage.setItem("mmc-3",JSON.stringify(info));
+                refresh();
             } else{
                 checkbox.checked = !checkbox.checked;
             }
         })
     })
 }
+
+function checkAllAvailableDaysListener(info){
+    const checkAllAvailableDaysButton = document.getElementById("checkAllAvailableDaysButton");
+    checkAllAvailableDaysButton.addEventListener('click',() => {
+        const checkboxListener = document.querySelectorAll("input[type=checkbox]");
+        checkboxListener.forEach(checkbox => {
+                let id = parseInt(checkbox.id.substring(4,checkbox.id.length));
+                if (dayIsInThePast(info.dateData[id].date) && !checkbox.isChecked) {
+                    info.dateData[id].isChecked = true;
+                    checkbox.parentElement.parentElement.classList += "align-middle text-center bg-lightblue";
+                    checkbox.parentElement.innerHTML = "<p>Completed!</p>";
+                    info.numDaysToGo--;
+                    localStorage.setItem("mmc-3",JSON.stringify(info));
+                    refresh();
+                } else{
+                    checkbox.checked = !checkbox.checked;
+                }
+        })
+    });
+}
+
+
+
+
+
 
 
 generateNumbers = function (infoArray) {
@@ -228,14 +261,19 @@ generateNumbers = function (infoArray) {
     do {
         dayText += `<tr height = "150px" class = "font-weight-bold"><th scope = "row">${week}</th>`
         for (let i = 0; i < 7; i++) {
-                if(day < infoArray.length){
+                if(day < infoArray.length - 1){
                     if(infoArray[day].isChecked === true){
-                        dayText += `<td class = "bg-success">${infoArray[day].monthText} ${infoArray[day].day}
-                        <p>Completed!</p>`;
+                        dayText += `<td class = "align-middle text-center bg-grey"><h4 class = "font-purple">${infoArray[day].monthText} ${infoArray[day].day}
+                        </h4><p class = "font-purple">Completed!</p>`;
                     } else{
-                        dayText += `<td>${infoArray[day].monthText}  ${infoArray[day].day}
-                            <div><input type = 'checkbox' id = 'test${String(day).padStart(5,'0')}' class = 'big-checkbox'>`;
+                        dayText += `<td class = "align-middle text-center border"><h4>${infoArray[day].monthText}  ${infoArray[day].day}
+                        </h4><div><input type = 'checkbox' id = 'test${String(day).padStart(5,'0')}' class = 'big-checkbox'>`;
                     }
+                } else if(day < infoArray.length){
+                    dayText += `<td class = "align-middle text-center bg-winninggold"><h4>${infoArray[day].monthText}  ${infoArray[day].day}
+                    </h4><div><input type = 'checkbox' id = 'test${String(day).padStart(5,'0')}' class = 'big-checkbox'>`;
+                } else {
+                    dayText += `</td>`;
                 }
                 day++;
             }
