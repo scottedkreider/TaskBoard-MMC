@@ -33,13 +33,13 @@ const mmc = document.getElementById("multi-month-calendar");
 
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    if(localStorage.getItem("mmc-3")){
+    if (localStorage.getItem("mmc-3")) {
         refresh();
     } else {
         cde.innerHTML += `<form action = "/semester" method="POST">
                 <div class = "form-group">
                     <label for = "semesterStartDate">Enter the Semester Start Date</label>
-                    <input type = "date" value = "2022-04-01" name = "semesterStartDate" id = "semesterStartDate">
+                    <input type = "date" value = "2022-03-06" name = "semesterStartDate" id = "semesterStartDate">
                 </div>
                 <div class = "form-group">
                     <label for = "semesterStartDate">Enter the Semester End Date</label>
@@ -59,25 +59,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
             event.preventDefault();
             if (confirm("Are you sure these are the correct dates?")) {
                 getDates(semesterDatesListener);
-            } else{
+            } else {
                 location.reload();
             }
         });
     }
 });
 
-laterStartDateHandler = function(){
+laterStartDateHandler = function () {
     const startDate = document.getElementById("semesterStartDate");
     const endDate = document.getElementById("semesterEndDate");
-    if(startDate.value > endDate.value){
+    if (startDate.value > endDate.value) {
         endDate.value = `${startDate.value}`;
     }
 }
 
-earlierStartDateHandler = function(){
+earlierStartDateHandler = function () {
     const startDate = document.getElementById("semesterStartDate");
     const endDate = document.getElementById("semesterEndDate");
-    if(endDate.value < startDate.value){
+    if (endDate.value < startDate.value) {
         startDate.value = `${endDate.value}`;
     }
 }
@@ -97,11 +97,13 @@ getDates = function (listener) {
     listener.disabled = true;
     startDateForm.disabled = true;
     endDateForm.disabled = true;
-    
+
     // dateArray(semesterStartDate, semesterEndDate)
     let objectToStore = generateDayDescriptors(semesterStartDate, semesterEndDate);
-    localStorage.setItem("mmc-3",JSON.stringify({numDaysToGo: objectToStore.length,
-                                                    dateData: objectToStore}));
+    localStorage.setItem("mmc-3", JSON.stringify({
+        numDaysToGo: objectToStore.length,
+        dateData: objectToStore
+    }));
     refresh();
 }
 
@@ -125,7 +127,7 @@ function generateDayDescriptors(startDate, endDate) {
             monthText: MONTHS[element.getUTCMonth()],
         }
     })
-    localStorage.setItem("originalNumberOfDays",dayDescriptors.length);
+    localStorage.setItem("originalNumberOfDays", dayDescriptors.length);
     return dayDescriptors;
 }
 
@@ -137,11 +139,6 @@ refresh = function () {
     let originalNumberOfDays = JSON.parse(localStorage.getItem("originalNumberOfDays"));
     cde.innerHTML = '';
 
-    // dc.innerHTML = `
-    //     <div><h1>Total number of days = ${myMMCInfo.length}</h1></div>
-    //     <div><button id = "clearSemesterButton">Clear Semester</button></div>
-    // `;
-
     dc.innerHTML = `<nav class = "navbar fixed-top bg-light">
         <div>${originalNumberOfDays - myMMCInfo.numDaysToGo} days down out of ${originalNumberOfDays}! ${myMMCInfo.numDaysToGo} days to go!</div>
         <div><button id = "clearSemesterButton">Clear Semester</button></div>
@@ -150,25 +147,27 @@ refresh = function () {
     `;
 
     mmc.innerHTML = `
-        <div class = "table-responsive">
+    <div id = "managerTable">
+        <div class = "table-responsive fixTableHead">
             <table class = "table table-bordered">
-                <thead style = "position: sticky; top: 0;">
-                    <tr class = "header" height = "75px">
-                        <th style="width: 9%" scope = "col" class = "header">WEEK</th>
-                        <th style="width: 13%" scope = "col" class = "header">Sunday</th>
-                        <th style="width: 13%" scope = "col" class = "header">Monday</th>
-                        <th style="width: 13%" scope = "col" class = "header">Tuesday</th>
-                        <th style="width: 13%" scope = "col" class = "header">Wednesday</th>
-                        <th style="width: 13%" scope = "col" class = "header">Thursday</th>
-                        <th style="width: 13%" scope = "col" class = "header">Friday</th>
-                        <th style="width: 13%" scope = "col" class = "header">Saturday</th>
-                    </tr>
-                </thead>
+                    <thead>
+                        <tr class = "black" height = "125px">
+                            <th style="width: 9%">WEEK</th>
+                            <th style="width: 13%">Sunday</th>
+                            <th style="width: 13%">Monday</th>
+                            <th style="width: 13%">Tuesday</th>
+                            <th style="width: 13%">Wednesday</th>
+                            <th style="width: 13%">Thursday</th>
+                            <th style="width: 13%">Friday</th>
+                            <th style="width: 13%">Saturday</th>
+                        </tr>
+                    </thead>
                 <tbody>
                     ${generateNumbers(myMMCInfo.dateData)}
                 </tbody>    
             </table>
         </div>
+    </div>
 `;
 
     checkBoxListener(myMMCInfo);
@@ -176,15 +175,15 @@ refresh = function () {
     checkAllAvailableDaysListener(myMMCInfo);
 }
 
-resetListener = function(){
+resetListener = function () {
     const resetListenerButton = document.getElementById("clearSemesterButton");
-    
-    resetListenerButton.addEventListener('click',(event) => {
+
+    resetListenerButton.addEventListener('click', (event) => {
         event.preventDefault();
-        if(confirm("Are you sure you want to delete this semester?")){
+        if (confirm("Are you sure you want to delete this semester?")) {
             localStorage.removeItem("mmc-3");
         }
-        location.reload();
+        document.location.reload();
     })
 }
 
@@ -198,37 +197,37 @@ checkBoxListener = function (info) {
     const checkboxListener = document.querySelectorAll("input[type=checkbox]");
     checkboxListener.forEach(checkbox => {
         checkbox.addEventListener("click", () => {
-            let id = parseInt(checkbox.id.substring(4,checkbox.id.length));
+            let id = parseInt(checkbox.id.substring(4, checkbox.id.length));
             if (dayIsInThePast(info.dateData[id].date) && !checkbox.isChecked) {
                 info.dateData[id].isChecked = true;
-                checkbox.parentElement.parentElement.classList += "align-middle text-center bg-lightblue";
+                checkbox.parentElement.classList += "align-middle text-center bg-lightblue";
                 checkbox.parentElement.innerHTML = "<p>Completed!</p>";
                 info.numDaysToGo--;
-                localStorage.setItem("mmc-3",JSON.stringify(info));
+                localStorage.setItem("mmc-3", JSON.stringify(info));
                 refresh();
-            } else{
+            } else {
                 checkbox.checked = !checkbox.checked;
             }
         })
     })
 }
 
-function checkAllAvailableDaysListener(info){
+function checkAllAvailableDaysListener(info) {
     const checkAllAvailableDaysButton = document.getElementById("checkAllAvailableDaysButton");
-    checkAllAvailableDaysButton.addEventListener('click',() => {
+    checkAllAvailableDaysButton.addEventListener('click', () => {
         const checkboxListener = document.querySelectorAll("input[type=checkbox]");
         checkboxListener.forEach(checkbox => {
-                let id = parseInt(checkbox.id.substring(4,checkbox.id.length));
-                if (dayIsInThePast(info.dateData[id].date) && !checkbox.isChecked) {
-                    info.dateData[id].isChecked = true;
-                    checkbox.parentElement.parentElement.classList += "align-middle text-center bg-lightblue";
-                    checkbox.parentElement.innerHTML = "<p>Completed!</p>";
-                    info.numDaysToGo--;
-                    localStorage.setItem("mmc-3",JSON.stringify(info));
-                    refresh();
-                } else{
-                    checkbox.checked = !checkbox.checked;
-                }
+            let id = parseInt(checkbox.id.substring(4, checkbox.id.length));
+            if (dayIsInThePast(info.dateData[id].date) && !checkbox.isChecked) {
+                info.dateData[id].isChecked = true;
+                checkbox.parentElement.parentElement.classList += "align-middle text-center bg-lightblue";
+                checkbox.parentElement.innerHTML = "<p>Completed!</p>";
+                info.numDaysToGo--;
+                localStorage.setItem("mmc-3", JSON.stringify(info));
+                refresh();
+            } else {
+                checkbox.checked = !checkbox.checked;
+            }
         })
     });
 }
@@ -244,7 +243,7 @@ generateNumbers = function (infoArray) {
     let week = 1;
     let day = 0;
     let placeholders = [];
-    for(var i = 0; i < infoArray[0].dayOfTheWeek; i++){
+    for (var i = 0; i < infoArray[0].dayOfTheWeek; i++) {
         placeholders.push({
             date: "",
             day: "",
@@ -259,25 +258,25 @@ generateNumbers = function (infoArray) {
     })
 
     do {
-        dayText += `<tr height = "150px" class = "font-weight-bold"><th scope = "row">${week}</th>`
+        dayText += `<tr height = "150px" class = "font-weight-bold black"><th scope = "row">${week}</th>`
         for (let i = 0; i < 7; i++) {
-                if(day < infoArray.length - 1){
-                    if(infoArray[day].isChecked === true){
-                        dayText += `<td class = "align-middle text-center bg-grey"><h4 class = "font-purple">${infoArray[day].monthText} ${infoArray[day].day}
+            if (day < infoArray.length - 1) {
+                if (infoArray[day].isChecked === true) {
+                    dayText += `<td class = "align-middle text-center bg-grey"><h4 class = "font-purple">${infoArray[day].monthText} ${infoArray[day].day}
                         </h4><p class = "font-purple">Completed!</p>`;
-                    } else{
-                        dayText += `<td class = "align-middle text-center border"><h4>${infoArray[day].monthText}  ${infoArray[day].day}
-                        </h4><div><input type = 'checkbox' id = 'test${String(day).padStart(5,'0')}' class = 'big-checkbox'>`;
-                    }
-                } else if(day < infoArray.length){
-                    dayText += `<td class = "align-middle text-center bg-winninggold"><h4>${infoArray[day].monthText}  ${infoArray[day].day}
-                    </h4><div><input type = 'checkbox' id = 'test${String(day).padStart(5,'0')}' class = 'big-checkbox'>`;
                 } else {
-                    dayText += `</td>`;
+                    dayText += `<td class = "align-middle text-center border"><h4>${infoArray[day].monthText}  ${infoArray[day].day}
+                        </h4><div><input type = 'checkbox' id = 'test${String(day).padStart(5, '0')}' class = 'big-checkbox'>`;
                 }
-                day++;
+            } else if (day < infoArray.length) {
+                dayText += `<td class = "align-middle text-center bg-winninggold"><h4>${infoArray[day].monthText}  ${infoArray[day].day}
+                    </h4><div><input type = 'checkbox' id = 'test${String(day).padStart(5, '0')}' class = 'big-checkbox'>`;
+            } else {
+                dayText += `</td>`;
             }
-            dayText +="</div></td>";
+            day++;
+        }
+        dayText += "</div></td>";
         dayText += "</tr>";
         week++;
     } while (day < infoArray.length);

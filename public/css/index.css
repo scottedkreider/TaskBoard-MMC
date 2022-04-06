@@ -42,3 +42,46 @@
     color: #552586;
 }
 
+.p {
+    font-size: 30px;
+    font-size: 1vw;
+}
+
+.h4 {
+    font-size: 30px;
+    font-size: 1vw;
+}
+
+table {
+    position: relative;
+    border-collapse: collapse;
+}
+
+tr.black th {
+    background: black;
+    color: white;
+}
+
+
+.fixTableHead {
+    overflow-y: auto;
+    height: 100vh;
+    width: 100vw;
+  }
+  .fixTableHead thead th {
+    position: sticky;
+    top: 0;
+  }
+  table {
+    border-collapse: collapse;        
+    width: 100%;
+  }
+
+  th,
+  td {
+    padding: 8px 15px;
+    border: 2px solid #529432;
+  }
+  th {
+    background: #ABDD93;
+  }
