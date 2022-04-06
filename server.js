@@ -13,7 +13,7 @@ app.use("/public",express.static(path.join(__dirname,'/public')));
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 
-var port_number = server.listen(process.env.PORT || 3000);
+var port_number = process.env.PORT || 3000;
 // Port website will run on
 app.listen(port_number,() => {
     console.log(`Listening on port ${port_number}`);
