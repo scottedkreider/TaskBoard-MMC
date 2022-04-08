@@ -33,20 +33,47 @@ app.listen(port_number,() => {
 
 // Root route
 app.get('/', (req, res) => {
+    console.log("index");
+    res.render('pages/login');
+});
+
+app.get('/index', (req, res) => {
+    console.log("index");
     res.render('pages/index');
+});
+
+app.get('/multiMonthCalendar', (req, res) => {
+    console.log("index");
+    res.render('pages/multiMonthCalendar');
 });
 
 app.post('/semester', (req, res) => {
     console.log(req.body); 
 });
 
+app.get('/loginToIndex', (req, res) => {
+    console.log("login");
+    res.render('pages/index');
+});
+
 app.get('/login', (req, res) => {
-    console.log("Hello world");
+    console.log("login");
     res.render('pages/login');
 });
 
 
+app.get('/register', (req, res) => {
+    console.log("login");
+    res.render('pages/register');
+});
+
 app.get('/tasklist', (req, res) => {
-    console.log("Hello world");
+    console.log("tasklist");
     res.render('pages/tasklist');
+});
+
+
+app.post('/debug', (req, res) => {
+    console.log("debug");
+    // res.render('pages/tasklist');
 });
