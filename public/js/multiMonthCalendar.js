@@ -37,8 +37,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         refresh();
     } else {
         cde.innerHTML += `
-        <div class = "bg-lightpeach text-center">
-            <div>
+        <div class = "bg-lightpeach text-center border border-dark shadow-lg">
+            <div class = "mt-5">
                 <h1>Create a new multi-month calendar!</h1>
             </div>        
             <hr/>
@@ -52,19 +52,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 <br>
             </div>
             <hr/>
-            <form action = "/semester" method="POST" class = "text-center bg-lightpeach">
-                    <div class = "form-group font-weight-bold">
-                        <label for = "semesterStartDate">Enter the Period Start Date</label>
-                        <input type = "date" value = "2022-03-14" name = "semesterStartDate" id = "semesterStartDate">
-                    </div>
-                    <div class = "form-group font-weight-bold">
-                        <label for = "semesterStartDate">Enter the Period End Date</label>
-                        <input type = "date" value = "2022-04-30" name = "semesterEndDate" id = "semesterEndDate">
-                    </div>
-                    <button id = "semesterDatesSubmit" type = "submit" class = "button button3 font-weight-bold">Submit</button>
-            </form>
-
-
+            <div class = "mb-5">
+                <form action = "/semester" method="POST" class = "text-center bg-lightpeach">
+                        <div class = "form-group font-weight-bold">
+                            <label for = "semesterStartDate">Enter the Period Start Date</label>
+                            <input type = "date" value = "2022-03-14" name = "semesterStartDate" id = "semesterStartDate">
+                        </div>
+                        <div class = "form-group font-weight-bold">
+                            <label for = "semesterStartDate">Enter the Period End Date</label>
+                            <input type = "date" value = "2022-04-30" name = "semesterEndDate" id = "semesterEndDate">
+                        </div>
+                        <button id = "semesterDatesSubmit" type = "submit" class = "button button3 font-weight-bold">Submit</button>
+                </form>
+            </div>
         </div>
         `;
         const semesterDatesListener = document.getElementById("semesterDatesSubmit");
@@ -158,7 +158,12 @@ refresh = function () {
     let originalNumberOfDays = JSON.parse(localStorage.getItem("originalNumberOfDays"));
     cde.innerHTML = '';
 
-    dc.innerHTML = `<nav class = "navbar navbar-custom bg-lightpeach border-bottom border-dark fixTableWidth">
+    dc.innerHTML = `
+    <div class = "center">
+
+    </div>
+    
+    <div class = "navbar navbar-custom border-bottom border-dark fixTableWidth shadow-lg">
         <div class = "text-left">
             <p class = "font-weight-bold">
                 <span style = "color:#6305dc">${originalNumberOfDays - myMMCInfo.numDaysToGo}</span> days down out of ${originalNumberOfDays}!
@@ -167,7 +172,7 @@ refresh = function () {
             </p>
         </div>
         <div>
-            <button id = "checkAllAvailableDaysButton" class = "button button3 font-weight-bold">
+            <button id = "checkAllAvailableDaysButton" class = "button button3 font-weight-bold" style = "background-color: #0C2C40;">
                 Check off all available days!
             </button>
         </div>
@@ -176,7 +181,7 @@ refresh = function () {
                 Delete Calendar
             </button>
         </div>
-    </nav>
+    </div>
     `;
 
     mmc.innerHTML = `
@@ -184,7 +189,7 @@ refresh = function () {
         <div class = "table-responsive fixTableHead">
             <table class = "table borderless table-sm">
                     <thead>
-                        <tr class = "peach" height = "100px">
+                        <tr class = "navy" height = "100px">
                             <th style="width: 9%"><h4 small>Week</h1></th>
                             <th style="width: 13%"><h4 small>Sunday</h1></th>
                             <th style="width: 13%"><h4 small>Monday</h1></th>
@@ -299,7 +304,7 @@ generateNumbers = function (infoArray) {
     })
 
     do {
-        dayText += `<tr class = "font-weight-bold lightpeach border-right border-dark"><th scope = "row"><p class = "font-purple">${week}</p></th>`
+        dayText += `<tr class = "font-weight-bold lightpeach border-right border-dark"><th scope = "row" class = ""><p class = "font-purple">${week}</p></th>`
         for (let i = 0; i < 7; i++) {
             if (day < infoArray.length - 1) {
                 if (infoArray[day].isChecked === true) {
