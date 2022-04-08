@@ -2,7 +2,9 @@ const inputUsernameField = document.getElementById("exampleInputUsername");
 const inputPasswordField = document.getElementById("exampleInputPassword");
 const loginButton = document.getElementById("login-button");
 
-loginButton.addEventListener('click',(event) => {
+
+
+loginButton.addEventListener('submit',(event) => {
     event.preventDefault();
     if(!localStorage.getItem("userLoginCredentials")){
         alert("No user account found. Please create a new account.");
@@ -17,3 +19,4 @@ loginButton.addEventListener('click',(event) => {
         }
     }
 });
+

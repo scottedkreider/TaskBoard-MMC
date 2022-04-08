@@ -30,6 +30,10 @@
     background-color: #c9f5d9;
 }
 
+.bg-navy {
+    background-color: #0C2C40;
+}
+
 .bg-navyblue {
     background-color: #000080;
 }
@@ -80,6 +84,10 @@ tr.black th {
     overflow-y: auto;
     height: 60vh;
     width: 70vw;
+}
+
+.navbar-custom {
+    height: 150px;
 }
 
 
@@ -315,3 +323,19 @@ table {
     color: var(--orange);
   }
    */
+
+
+
+   .sidebar {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #0C2C40;
+    border-right: 1px solid #0C2C40;
+    }

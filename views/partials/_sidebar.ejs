@@ -1,41 +1,49 @@
         <!-- Sidebar -->
-        <ul class = "navbar-nav sidebar sidebar-dark accordian bg-peach" id="accordionSidebar">
-            <div><h1>TaskBoard</h1></div>
+        <div class = "col-sm-3 col-md-2 sidebar shadow-lg" style = "width: 20vw;">
+            <ul class = "navbar-nav sidebar sidebar-dark accordian bg-navy" id="accordionSidebar">
 
-            <!-- Logo -->
-
-            <!-- Main Screen -->
-            <li class = "nav-item">
-                <form action="/index" method = "GET">
-                    <div>
-                        <button type = "submit" class = "button3 btn-light font-weight-bold">
-                            Homepage
-                        </button>
-                    </div>
-                </form>
-            </li>
-            <br>
-            <!-- MMC Link -->
-            <li class = "nav-item">
-                <form action="/multiMonthCalendar" method = "GET">
-                    <div>
-                        <button type = "submit" class = "button3 btn-light font-weight-bold">
-                            Multi-Month Calendar
-                        </button>
-                    </div>
-                </form>
-            </li>
-            <br>
-            <!-- Task List Link -->
-            <li class = "nav-item">
-                <form action="/tasklist" method = "GET">
-                    <div>
-                        <button type = "submit" class = "button3 btn-light font-weight-bold">
-                            Task List 
-                        </button>
-                    </div>
-                </form>
-            </li>
-
-
-        </ul>
+                <!-- Logo -->
+                <div class = "" style = "height: 8vw;">
+                    <div class = "text-center font-weight-bold">Taskboard</div>
+                    <i class="bi bi-alarm"></i>
+                </div>
+    
+                <!-- Main Screen -->
+                <li class = "nav-item">
+                    <form action="/index" method = "GET">
+                        <div>
+                            <a href="login" class="btn btn-light btn-block" id = "register-button">
+                                <div class = "" style = "font-size: 18px">
+                                    <i class="bi bi-house"></i>Home
+                                </div>
+                                
+                            </a>
+                        </div>
+                    </form>
+                </li>
+                <br>
+                <!-- MMC Link -->
+                <li class = "nav-item">
+                    <form action="/multiMonthCalendar" method = "GET">
+                        <div>
+                            <button type = "submit" class = "button3 btn-light font-weight-bold">
+                                Multi-Month Calendar
+                            </button>
+                        </div>
+                    </form>
+                </li>
+                <br>
+                <!-- Task List Link -->
+                <li class = "nav-item">
+                    <form action="/tasklist" method = "GET">
+                        <div>
+                            <button type = "submit" class = "button3 btn-light font-weight-bold">
+                                Task List 
+                            </button>
+                        </div>
+                    </form>
+                </li>
+    
+            </ul>
+        </div>
+        

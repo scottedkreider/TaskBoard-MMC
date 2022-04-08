@@ -28,11 +28,11 @@
                     <div class="col-lg-7 center">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Create a TaskBoard Account</h1>
                                 <div class = "text-danger">
                                     <p class = "font-weight-bold">5927 Students - These are Insecure Fields</p>
-                                    <p class = "font-weight-bold">Only Enter Dummy Login Specs Here</p>
-                                    <p class = "font-weight-bold">Save your dummy username/password to login on the next screen</p>
+                                    <p class = "font-weight-bold">Only enter dummy login credentials (e.g. testaccount, 1234)</p>
+                                    <p class = "font-weight-bold">Save these dummy credentials to login on the next screen</p>
                                 </div>
                             </div>
                             <form class="user">
@@ -60,8 +60,11 @@
                                             id="exampleRepeatPassword" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                                <a href="login" class="btn btn-primary btn-user btn-block" id = "register-button">
-                                    Register Account
+                                <a href="login" class="btn btn-dark btn-block" id = "register-button">
+                                    <div class = "" style = "font-size: 18px">
+                                        Register Account
+                                    </div>
+                                    
                                 </a>
                             </form>
                             <hr>
@@ -72,6 +75,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class = "center">
+            <button id = "debugButton" class = "btn btn-primary btn-warning text-dark border-dark button button3 font-weight-bold">Debug: Clear all app data and restart</button>
         </div>
     <script src="/public/js/debug.js"></script>
     <script src="/public/js/register.js"></script>
