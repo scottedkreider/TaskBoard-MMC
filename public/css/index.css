@@ -69,6 +69,11 @@ tr.peach th {
     color: white;
 }
 
+tr.navy th {
+    background: #0C2C40;
+    color: white;
+}
+
 tr.lightpeach th {
     background: #ffd686;
     color: black;
@@ -82,8 +87,8 @@ tr.black th {
 
 .fixTableHead {
     overflow-y: auto;
-    height: 60vh;
-    width: 70vw;
+    height: 50vh;
+    width: 80vw;
 }
 
 .navbar-custom {
@@ -93,13 +98,13 @@ tr.black th {
 
 .fixTableWidth {
     overflow-y: auto;
-    width: 80vw;
+    width: 60vw;
 }
 
 .fixTableWidtha {
     overflow-y: auto;
     overflow-x: auto;
-    width: 80vw;
+    width: 60vw;
 }
 
 .fixTableHead thead th {
@@ -139,6 +144,10 @@ table {
 .button5 {border-radius: 50%;}
 
 
+
+.rounded {
+    border-radius:.25rem!important
+}
 
 /* using css Variables (look this up!) */
 
@@ -260,7 +269,7 @@ table {
   #tasks .task{
     display: flex;
     justify-content: space-between;
-    background-color: #ed8f69;
+    background-color: #C9f5d9;
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
@@ -339,3 +348,15 @@ table {
     background-color: #0C2C40;
     border-right: 1px solid #0C2C40;
     }
+
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+.example::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .example {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }

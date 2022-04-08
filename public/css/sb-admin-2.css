@@ -2579,8 +2579,8 @@ fieldset:disabled a.btn {
 
 .btn-light {
   color: #3a3b45;
-  background-color: #f8f9fc;
-  border-color: #f8f9fc;
+  background-color: #c9f5d9;
+  border-color: #c9f5d9;
 }
 
 .btn-light:hover {
@@ -7574,8 +7574,12 @@ button.bg-dark:focus {
 }
 
 .shadow-lg {
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.175) !important;
 }
+
+.shadow-lga {
+    box-shadow: 4rem 2rem 4rem rgba(0, 0, 0, 0.175) !important;
+  }
 
 .shadow-none {
   box-shadow: none !important;

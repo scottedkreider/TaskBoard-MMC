@@ -1,48 +1,50 @@
-        <!-- Sidebar -->
-        <div class = "col-sm-3 col-md-2 sidebar shadow-lg" style = "width: 20vw;">
-            <ul class = "navbar-nav sidebar sidebar-dark accordian bg-navy" id="accordionSidebar">
+        <!-- Sidebar sidebar -->
+        <div class = "sticky-left col-sm-3 col-md-2 shadow-lga" style = "width: 20vw;">
+            <ul class = "navbar-nav accordian" id="accordionSidebar">
+                <!-- sidebar sidebar-dark  -->
 
                 <!-- Logo -->
-                <div class = "" style = "height: 8vw;">
-                    <div class = "text-center font-weight-bold">Taskboard</div>
-                    <i class="bi bi-alarm"></i>
+                <div class = "d-flex align-items-center" style = "height: 11vw;">
+                    <div class = "d-flex text-light font-weight-bold justify-content-center"  style = "height: 5vh; width: 20vw;">
+                        <div class = "text-align-center">
+                            <h2>Taskboard</h2>
+                        </div>
+                    </div>
                 </div>
+                <div style = "height: 25px;"></div>
     
                 <!-- Main Screen -->
-                <li class = "nav-item">
-                    <form action="/index" method = "GET">
-                        <div>
-                            <a href="login" class="btn btn-light btn-block" id = "register-button">
-                                <div class = "" style = "font-size: 18px">
-                                    <i class="bi bi-house"></i>Home
-                                </div>
-                                
-                            </a>
-                        </div>
-                    </form>
-                </li>
+                    <li class = "nav-item">
+                            <form action="index">
+                                <button type = "submit" class = "border border-dark shadow-lg btn-block button3 btn-light font-weight-bold">
+                                    Home
+                                </button>
+                            </form>
+                    </li>
+
+
+
+
                 <br>
                 <!-- MMC Link -->
                 <li class = "nav-item">
-                    <form action="/multiMonthCalendar" method = "GET">
-                        <div>
-                            <button type = "submit" class = "button3 btn-light font-weight-bold">
-                                Multi-Month Calendar
-                            </button>
-                        </div>
+                    <form action="multiMonthCalendar">
+                        <button type = "submit" class = "border border-dark shadow-lg btn-block button3 btn-light font-weight-bold">
+                            Multi-Month Calendar
+                        </button>
                     </form>
                 </li>
                 <br>
                 <!-- Task List Link -->
                 <li class = "nav-item">
-                    <form action="/tasklist" method = "GET">
-                        <div>
-                            <button type = "submit" class = "button3 btn-light font-weight-bold">
-                                Task List 
-                            </button>
-                        </div>
+                    <form action="taskList">
+                        <button type = "submit" class = "border border-dark shadow-lg btn-block button3 btn-light font-weight-bold">
+                            Task List
+                        </button>
                     </form>
                 </li>
+
+
     
             </ul>
         </div>
