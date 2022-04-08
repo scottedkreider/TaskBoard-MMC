@@ -37,5 +37,16 @@ app.get('/', (req, res) => {
 });
 
 app.post('/semester', (req, res) => {
-    console.log(req.body);
+    console.log(req.body); 
+});
+
+app.get('/login', (req, res) => {
+    console.log("Hello world");
+    res.render('pages/login');
+});
+
+
+app.get('/tasklist', (req, res) => {
+    console.log("Hello world");
+    res.render('pages/tasklist');
 });

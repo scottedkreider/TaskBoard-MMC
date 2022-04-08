@@ -158,7 +158,7 @@ refresh = function () {
     let originalNumberOfDays = JSON.parse(localStorage.getItem("originalNumberOfDays"));
     cde.innerHTML = '';
 
-    dc.innerHTML = `<nav class = "navbar navbar-custom fixed-top bg-lightpeach border-bottom border-dark">
+    dc.innerHTML = `<nav class = "navbar navbar-custom bg-lightpeach border-bottom border-dark fixTableWidth">
         <div class = "text-left">
             <p class = "font-weight-bold">
                 <span style = "color:#6305dc">${originalNumberOfDays - myMMCInfo.numDaysToGo}</span> days down out of ${originalNumberOfDays}!
@@ -180,11 +180,11 @@ refresh = function () {
     `;
 
     mmc.innerHTML = `
-    <div id = "managerTable" class = "fixTableWidth">
+    <div id = "managerTable" class = "fixTableWidtha bg-light">
         <div class = "table-responsive fixTableHead">
             <table class = "table borderless table-sm">
                     <thead>
-                        <tr class = "peach" height = "200px">
+                        <tr class = "peach" height = "100px">
                             <th style="width: 9%"><h4 small>Week</h1></th>
                             <th style="width: 13%"><h4 small>Sunday</h1></th>
                             <th style="width: 13%"><h4 small>Monday</h1></th>
