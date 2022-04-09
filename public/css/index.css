@@ -62,6 +62,7 @@
 table {
     position: relative;
     border-collapse: collapse;
+    color: #000;
 }
 
 tr.peach th {
@@ -87,7 +88,6 @@ tr.black th {
 
 .fixTableHead {
     overflow-y: auto;
-    height: 50vh;
     width: 80vw;
 }
 
@@ -98,13 +98,11 @@ tr.black th {
 
 .fixTableWidth {
     overflow-y: auto;
-    width: 60vw;
 }
 
 .fixTableWidtha {
     overflow-y: auto;
     overflow-x: auto;
-    width: 60vw;
 }
 
 .fixTableHead thead th {
@@ -115,6 +113,7 @@ tr.black th {
 table {
     border-collapse: collapse;
     width: 90vw;
+    color: #000;
 }
 
 .navbar-custom {
@@ -269,7 +268,7 @@ table {
   #tasks .task{
     display: flex;
     justify-content: space-between;
-    background-color: #C9f5d9;
+    background-color: #0C2C40;
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
@@ -296,7 +295,7 @@ table {
     margin: 0 -0.5rem;
   }
 
-  /* .task .actions button{
+.task .actions button{
     display: flex;
     cursor: pointer;
     margin: 0 -0.5rem;
@@ -304,9 +303,9 @@ table {
     font-weight: 700;
     text-transform: uppercase;
     transition: 0.4s;
-  } */
+  }
   
-  /* #tasks .task button{
+#tasks .task button{
     display: flex;
     margin: pointer;
     margin: 0 0.5rem;
@@ -315,7 +314,6 @@ table {
     text-transform: uppercase;
     transition: 0.4s;
   }
-  
   .task .actions button:hover{
     opacity: 0.8;
   }
@@ -327,11 +325,12 @@ table {
   .task .actions .edit {
     background-image: linear-gradient(to right, var(--light), var(--light));
   }
-  
   .task .actions .delete{
     color: var(--orange);
+    border: none;
+    background-color: rgb(0,0,0,0)!important;
   }
-   */
+
 
 
 

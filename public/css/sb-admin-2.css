@@ -210,6 +210,7 @@ svg {
 
 table {
   border-collapse: collapse;
+  color:#000;
 }
 
 caption {
@@ -1485,23 +1486,23 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #858796;
+  color: #000;
 }
 
 .table th,
 .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #e3e6f0;
+  border-top: 1px solid #000;
 }
 
 .table thead th {
   vertical-align: bottom;
-  border-bottom: 2px solid #e3e6f0;
+  border-bottom: 2px solid #000;
 }
 
 .table tbody + tbody {
-  border-top: 2px solid #e3e6f0;
+  border-top: 2px solid #000;
 }
 
 .table-sm th,
@@ -1510,12 +1511,12 @@ pre code {
 }
 
 .table-bordered {
-  border: 1px solid #e3e6f0;
+  border: 1px solid #000;
 }
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #e3e6f0;
+  border: 1px solid #000;
 }
 
 .table-bordered thead th,
@@ -1817,7 +1818,7 @@ pre code {
 .table-responsive {
   display: block;
   width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -1839,6 +1840,12 @@ pre code {
   border: 1px solid #d1d3e2;
   border-radius: 0.35rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.no-border {
+    border: 0;
+    box-shadow: none;
+    background-color: rgba(0,0,0,0)!important;
 }
 
 @media (prefers-reduced-motion: reduce) {

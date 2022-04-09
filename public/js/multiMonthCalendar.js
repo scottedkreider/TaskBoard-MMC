@@ -159,12 +159,8 @@ refresh = function () {
     cde.innerHTML = '';
 
     dc.innerHTML = `
-    <div class = "center">
-
-    </div>
-    
-    <div class = "navbar navbar-custom border-bottom border-dark fixTableWidth shadow-lg">
-        <div class = "text-left">
+       <div class = "navbar navbar-custom border-bottom border-dark fixTableWidth shadow-lg">
+        <div class = "text-center">
             <p class = "font-weight-bold">
                 <span style = "color:#6305dc">${originalNumberOfDays - myMMCInfo.numDaysToGo}</span> days down out of ${originalNumberOfDays}!
                 <br><span style = "color:#6305dc">${myMMCInfo.numDaysToGo}</span> days to go!
@@ -172,12 +168,12 @@ refresh = function () {
             </p>
         </div>
         <div>
-            <button id = "checkAllAvailableDaysButton" class = "button button3 font-weight-bold" style = "background-color: #0C2C40;">
+            <button id = "checkAllAvailableDaysButton" class = "button button3 font-weight-bold" style = "background-color: #0C2C40; font-size: 1vw;">
                 Check off all available days!
             </button>
         </div>
         <div>
-            <button id = "clearSemesterButton" class = "button button3 btn-light font-weight-bold" style = "background-color: #e9e9e9; color: #7f7f7f;">
+            <button id = "clearSemesterButton" class = "button button3 btn-light font-weight-bold" style = "background-color: #e9e9e9; color: #7f7f7f;  font-size: 1vw;">
                 Delete Calendar
             </button>
         </div>
@@ -188,19 +184,19 @@ refresh = function () {
     <div id = "managerTable" class = "fixTableWidtha bg-light">
         <div class = "table-responsive fixTableHead">
             <table class = "table borderless table-sm">
-                    <thead>
+                    <thead  style = "font-size: 1.5vw;">
                         <tr class = "navy" height = "100px">
-                            <th style="width: 9%"><h4 small>Week</h1></th>
-                            <th style="width: 13%"><h4 small>Sunday</h1></th>
-                            <th style="width: 13%"><h4 small>Monday</h1></th>
-                            <th style="width: 13%"><h4 small>Tuesday</h1></th>
-                            <th style="width: 13%"><h4 small>Wednesday</h1></th>
-                            <th style="width: 13%"><h4 small>Thursday</h1></th>
-                            <th style="width: 13%"><h4 small>Friday</h1></th>
-                            <th style="width: 13%"><h4 small>Saturday</h1></th>
+                            <th style="width: 9%">Week</th>
+                            <th style="width: 13%">Sunday</th>
+                            <th style="width: 13%">Monday</th>
+                            <th style="width: 13%">Tuesday</th>
+                            <th style="width: 13%">Wednesday</th>
+                            <th style="width: 13%">Thursday</th>
+                            <th style="width: 13%">Friday</th>
+                            <th style="width: 13%">Saturday</th>
                         </tr>
                     </thead>
-                <tbody>
+                <tbody style = "font-size: 1vw;">
                     ${generateNumbers(myMMCInfo.dateData)}
                 </tbody>    
             </table>

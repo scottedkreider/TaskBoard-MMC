@@ -4,7 +4,7 @@ const loginButton = document.getElementById("login-button");
 
 
 
-loginButton.addEventListener('submit',(event) => {
+loginButton.addEventListener('click',(event) => {
     event.preventDefault();
     if(!localStorage.getItem("userLoginCredentials")){
         alert("No user account found. Please create a new account.");

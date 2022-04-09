@@ -40,6 +40,10 @@ window.addEventListener('DOMContentLoaded', () => {
   
             const task_input_el = document.createElement("input");
             task_input_el.classList.add("text");
+            task_input_el.classList.add("form-control");
+            task_input_el.classList.add("no-border");
+            task_input_el.classList.add("font-weight-bold");
+            task_input_el.classList.add("text-light");
             task_input_el.type = "text";
             task_input_el.value = `${task.taskName} on ${task.taskDate}`;
             task_input_el.setAttribute("readonly", "readonly");
@@ -49,15 +53,15 @@ window.addEventListener('DOMContentLoaded', () => {
             const task_actions_el = document.createElement("div");
             task_actions_el.classList.add("actions");
         
-            const task_edit_el = document.createElement("button");
-            task_edit_el.classList.add("edit");
-            task_edit_el.innerHTML = "Edit";
+            // const task_edit_el = document.createElement("button");
+            // task_edit_el.classList.add("edit");
+            // task_edit_el.innerHTML = "Edit";
         
             const task_delete_el = document.createElement("button");
             task_delete_el.classList.add("delete");
             task_delete_el.innerHTML = "Delete";
         
-            task_actions_el.appendChild(task_edit_el);
+            // task_actions_el.appendChild(task_edit_el);
             task_actions_el.appendChild(task_delete_el);
         
             task_el.appendChild(task_actions_el);
@@ -90,6 +94,10 @@ window.addEventListener('DOMContentLoaded', () => {
   
       const task_input_el = document.createElement("input");
       task_input_el.classList.add("text");
+      task_input_el.classList.add("form-control");
+      task_input_el.classList.add("no-border");
+      task_input_el.classList.add("font-weight-bold");
+      task_input_el.classList.add("text-light");
       task_input_el.type = "text";
       task_input_el.value = `${task.taskName} on ${task.taskDate}`;
       task_input_el.setAttribute("readonly", "readonly");
