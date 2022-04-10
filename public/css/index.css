@@ -398,3 +398,13 @@ table {
     padding: 1rem 1rem;
     vertical-align: middle;
   }
+
+
+  #debug {
+    position: absolute;
+    bottom: 0;
+}
+
+#container-rel {
+    position: relative;
+}

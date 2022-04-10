@@ -27,14 +27,14 @@
 
         </div>
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column" style = "height: 100%; width: 100%">
+            <div id="content-wrapper" class="d-flex flex-column bg-peach" style = "height: 100%; width: 100%">
                 <!-- Topbar -->
-                <%- include(`../partials/_topbar`) %>
-                    <div class="container-fluid bg-lightpeach" style = "width: 100%;">
+                <%- include(`../partials/_topbar`,{name: "Multi-Month Calendar"}) %>
+                    <div class="container-fluid bg-lightpeach" style = "height: 100%; width: 100%;">
                         <!-- Main Content -->
 
                                 <!-- Page content -->
-                                <div class="container-fluid"  style = "height: 100%;">
+                                <div class="container-fluid"  style = "height: 100%; width: 100%;">
                                     <!-- MultiMonthCalendar -->
                                         <div id="calendar-entry"></div>
                                         <div id="date-calculations"></div>
