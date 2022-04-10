@@ -12,39 +12,38 @@
     <link rel="stylesheet" href="public/css/index.css">
     <link rel="stylesheet" href="public/css/sb-admin-2.css">
 
-    <title>TaskBoard - Homepage</title>
+    <title>TaskBoard - Multi-Month Calendar</title>
 </head>
 <!-- <%- include(`../partials/_header`) %> -->
 
-<body>
+<body class = "bg-lightpeach">
 
+    <div class = "bg-lightpeach">
     <!-- Page Wrapper -->
-    <div id="wrapper" class="bg-navy" style="height: 100vh;">
+    <div id="wrapper" class="bg-lightpeach" style="height: 100vh;">
         <!-- Sidebar -->
         <%- include(`../partials/_sidebar`) %>
 
-        <div class = "bg-lightpeach">
-
-        </div>
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column bg-peach" style = "height: 100%; width: 100%">
+            <div id="content-wrapper" class="d-flex flex-column bg-lightpeach" style = "height: 100%; width: 100%">
                 <!-- Topbar -->
                 <%- include(`../partials/_topbar`,{name: "Multi-Month Calendar"}) %>
-                    <div class="container-fluid bg-lightpeach" style = "height: 100%; width: 100%;">
+                    <div class="container-fluid bg-lightpeach" style = "width: 100%;">
                         <!-- Main Content -->
 
                                 <!-- Page content -->
                                 <div class="container-fluid"  style = "height: 100%; width: 100%;">
                                     <!-- MultiMonthCalendar -->
-                                        <div id="calendar-entry"></div>
-                                        <div id="date-calculations"></div>
-                                        <div id="multi-month-calendar"></div>
+                                        <div id="calendar-entry" class = "bg-lightpeach"></div>
+                                        <div id="date-calculations" class = "bg-lightpeach"></div>
+                                        <div id="multi-month-calendar" class = "bg-lightpeach"></div>
                                 </div>
 
                     </div>
             </div>
-
     </div>
+    </div>
+
 
 
 
