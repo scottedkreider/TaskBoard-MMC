@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         refresh();
     } else {
         cde.innerHTML += `
-        <div class = "bg-lightpeach text-center border border-dark shadow-lg">
+        <div class = "container-fluid bg-lightpeach text-center ">
             <div class = "mt-5">
                 <h1>Create a new multi-month calendar!</h1>
             </div>        
@@ -159,7 +159,7 @@ refresh = function () {
     cde.innerHTML = '';
 
     dc.innerHTML = `
-       <div class = "navbar navbar-custom border-bottom border-dark fixTableWidth shadow-lg">
+       <div class = "navbar navbar-custom border-bottom border-dark fixTableWidth" style = "width: 100%;">
         <div class = "text-center">
             <p class = "font-weight-bold">
                 <span style = "color:#6305dc">${originalNumberOfDays - myMMCInfo.numDaysToGo}</span> days down out of ${originalNumberOfDays}!

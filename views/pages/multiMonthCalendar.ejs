@@ -20,32 +20,26 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper" class="bg-navy" style="height: 100vh;">
-
         <!-- Sidebar -->
         <%- include(`../partials/_sidebar`) %>
 
+        <div class = "bg-lightpeach">
 
+        </div>
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content-wrapper" class="d-flex flex-column" style = "height: 100%; width: 100%">
                 <!-- Topbar -->
                 <%- include(`../partials/_topbar`) %>
-                    <div class="container-fluid">
+                    <div class="container-fluid bg-lightpeach" style = "width: 100%;">
                         <!-- Main Content -->
-                        <div id="content" class="bg-lightpeach">
 
-                            <div class="container-fluid">
                                 <!-- Page content -->
-                                <div class="container-fluid main-container">
-
+                                <div class="container-fluid"  style = "height: 100%;">
                                     <!-- MultiMonthCalendar -->
-                                    <div class="container-fluid">
                                         <div id="calendar-entry"></div>
                                         <div id="date-calculations"></div>
                                         <div id="multi-month-calendar"></div>
-                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
                     </div>
             </div>

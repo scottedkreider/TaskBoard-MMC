@@ -4,6 +4,10 @@
     background-color: #555;
 }
 
+#gradient-sidebar {
+    background-image: linear-gradient(to right, #ed8f69, #c9f5d9, #ed8f69);
+  }
+
 .p-instructions {
     padding: 15px;
 }
@@ -22,8 +26,8 @@
 }
 
 .big-checkbox {
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
 }
 
 .bg-grey {
@@ -58,11 +62,31 @@
     color: #041e42;
 }
 
+.font-navy {
+    color: #0C2C40;
+}
+
+.font-winninggold {
+    color: #FCC201;
+}
+
+.font-peach {
+    color: #ed8f69;
+}
+
+.font-lightpeach {
+    color: #ffd686;
+}
+
+.horizontal-line {
+    padding-bottom: 20px;
+    border-bottom: 3px solid #f0f0f0; 
+}
 
 table {
     position: relative;
     border-collapse: collapse;
-    color: #000;
+    color: #0C2C40;
 }
 
 tr.peach th {
@@ -358,4 +382,19 @@ table {
   .example {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+
+
+  .parent {
+    border: 1px solid black;
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align: center;
+  }
+  .child {
+    display: inline-block;
+    border: 1px solid red;
+    padding: 1rem 1rem;
+    vertical-align: middle;
   }

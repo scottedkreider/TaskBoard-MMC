@@ -5,6 +5,16 @@ function arrayRemove(arr, value) {
     });
 }
 
+// const arr = ["a","b","c","d"];
+
+// console.log(arr);
+
+// const index = arr.indexOf("c");
+// console.log(index);
+// if (index > -1) {
+//   array.splice(index, 1); // 2nd parameter means remove one item only
+// }
+
 window.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector("#new-task-form");
     const deleteAll = document.querySelector("#deleteTasks");
@@ -29,7 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     if(listOfTasks){
-        listOfTasks.forEach((task) => {
+        listOfTasks.forEach((task, index) => {
             const task_el = document.createElement("div");
             task_el.classList.add("task");
 
@@ -37,18 +47,28 @@ window.addEventListener('DOMContentLoaded', () => {
             task_content_el.classList.add("content");
 
             task_el.appendChild(task_content_el);
+            task_el.classList.add("shadow-lg");
   
             const task_input_el = document.createElement("input");
             task_input_el.classList.add("text");
             task_input_el.classList.add("form-control");
             task_input_el.classList.add("no-border");
-            task_input_el.classList.add("font-weight-bold");
             task_input_el.classList.add("text-light");
             task_input_el.type = "text";
-            task_input_el.value = `${task.taskName} on ${task.taskDate}`;
+            task_input_el.value = task.taskName;
             task_input_el.setAttribute("readonly", "readonly");
+
+            const date_input_el = document.createElement("input");
+            date_input_el.classList.add("date");
+            date_input_el.classList.add("form-control");
+            date_input_el.classList.add("no-border");
+            date_input_el.classList.add("text-light");
+            date_input_el.type = "date";
+            date_input_el.value = task.taskDate;
+            date_input_el.setAttribute("readonly", "readonly");
         
             task_content_el.appendChild(task_input_el);
+            task_content_el.appendChild(date_input_el);
         
             const task_actions_el = document.createElement("div");
             task_actions_el.classList.add("actions");
@@ -68,6 +88,14 @@ window.addEventListener('DOMContentLoaded', () => {
         
             list_el.appendChild(task_el);
   
+            task_delete_el.addEventListener('click',()=>{
+                console.log(task_el.firstElementChild.firstElementChild.id);
+                list_el.removeChild(task_el);
+                localStorage.setItem("task-list",JSON.stringify(listOfTasks.slice(task_el.firstElementChild.firstElementChild.id,1)));
+
+                // listOfTasks = listOfTasks.length === 1 ? [] : listOfTasks.slice(ind, 1);
+                // localStorage.setItem("task-list",JSON.stringify(listOfTasks));
+            })
         })
       }
   
@@ -93,17 +121,26 @@ window.addEventListener('DOMContentLoaded', () => {
       task_el.appendChild(task_content_el);
   
       const task_input_el = document.createElement("input");
-      task_input_el.classList.add("text");
-      task_input_el.classList.add("form-control");
-      task_input_el.classList.add("no-border");
-      task_input_el.classList.add("font-weight-bold");
-      task_input_el.classList.add("text-light");
-      task_input_el.type = "text";
-      task_input_el.value = `${task.taskName} on ${task.taskDate}`;
-      task_input_el.setAttribute("readonly", "readonly");
-  
+            task_input_el.classList.add("text");
+            task_input_el.classList.add("form-control");
+            task_input_el.classList.add("no-border");
+            task_input_el.classList.add("text-light");
+            task_input_el.type = "text";
+            task_input_el.value = task.taskName;
+            task_input_el.setAttribute("readonly", "readonly");
 
-      task_content_el.appendChild(task_input_el);
+            const date_input_el = document.createElement("input");
+            date_input_el.classList.add("date");
+            date_input_el.classList.add("form-control");
+            date_input_el.classList.add("no-border");
+            date_input_el.classList.add("text-light");
+            date_input_el.type = "date";
+            date_input_el.value = task.taskDate;
+            date_input_el.setAttribute("readonly", "readonly");
+        
+            task_content_el.appendChild(task_input_el);
+            task_content_el.appendChild(date_input_el);
+
       listOfTasks.push(task);
       localStorage.setItem("task-list",JSON.stringify(listOfTasks));
   
@@ -140,10 +177,11 @@ window.addEventListener('DOMContentLoaded', () => {
     //   });
   
       task_delete_el.addEventListener('click',()=>{
-          console.log("we edit");
-        list_el.removeChild(task_el);
-        // listOfTasks.push(task);
-        // localStorage.setItem("task-list",JSON.stringify(listOfTasks));
+                console.log(task_el.firstElementChild.firstElementChild.id);
+                list_el.removeChild(task_el);
+                localStorage.setItem("task-list",JSON.stringify(listOfTasks.slice(task_el.firstElementChild.firstElementChild.id,1)));
+                // listOfTasks = listOfTasks.length === 1 ? [] : listOfTasks.slice(ind, 1);
+                // localStorage.setItem("task-list",JSON.stringify(listOfTasks));
       })
     })
   })
